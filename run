@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+docker build -t jupyter .
+docker run -it --rm -p 8888:8888 --user $(id -u):$(id -g) \
+    -v $HOME/works/jupyter-home:/home/chaeyk \
+    -e HOME=/home/chaeyk \
+    -e PYTHONPATH=/home/chaeyk/python \
+    jupyter
